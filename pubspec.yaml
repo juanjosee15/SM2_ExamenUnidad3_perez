@@ -1,6 +1,11 @@
+name: proyecto_moviles2
+description: Aplicación móvil para gestión de tickets
+publish_to: 'none'
+version: 0.1.0
+
 environment:
-  sdk: '>=3.7.0 <4.0.0'  # Cambiado de '^3.7.0' a este formato
-  flutter: '>=3.19.0'     # Añadido para mayor claridad
+  sdk: '>=3.7.0 <4.0.0'
+  flutter: '>=3.19.0'
 
 dependencies:
   flutter:
@@ -21,13 +26,13 @@ dependencies:
   permission_handler: ^12.0.0+1
   http: ^1.2.1
   flutter_dotenv: ^5.0.2
-  open_filex: ^4.3.2
+  open_filex: ^4.3.2  # Corregido el nombre (era open_files en el error)
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  test_coverage: ^0.7.0  # Añadido para generación de coverage
+  test_coverage: ^0.7.0
 
 flutter:
   uses-material-design: true
