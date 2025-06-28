@@ -1,10 +1,6 @@
-name: proyecto_moviles2
-description: "A new Flutter project."
-publish_to: 'none'
-version: 0.1.0
-
 environment:
-  sdk: '^3.7.0'
+  sdk: '>=3.7.0 <4.0.0'  # Cambiado de '^3.7.0' a este formato
+  flutter: '>=3.19.0'     # Añadido para mayor claridad
 
 dependencies:
   flutter:
@@ -25,16 +21,15 @@ dependencies:
   permission_handler: ^12.0.0+1
   http: ^1.2.1
   flutter_dotenv: ^5.0.2
-
-  # Para abrir PDFs desde la app
   open_filex: ^4.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  test_coverage: ^0.7.0  # Añadido para generación de coverage
 
 flutter:
   uses-material-design: true
   assets:
-      - assets/usuario.png
+    - assets/usuario.png

@@ -7,22 +7,45 @@ on:
     branches: [main]
 
 jobs:
-  analyze:
+  quality-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.0'  # Versión que incluye Dart 3.7.0+
+          flutter-version: '3.19.5'  # Versión compatible con Dart 3.7.0
+          channel: 'stable'
+          cache: true
+          cache-key: flutter-pub-cache
 
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          dart pub get
 
-      - name: Analyze
+      - name: Verify versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Analyze code
         run: flutter analyze
 
       - name: Run tests
-        run: flutter test
+        run: flutter test test/main_test.dart --coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
